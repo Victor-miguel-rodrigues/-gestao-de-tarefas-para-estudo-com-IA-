@@ -1,0 +1,106 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+    background-color: black;
+}
+
+.navbar{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgba(6, 6, 52, 0.561);
+}
+
+a:hover{
+    color: blueviolet;
+    padding: 10px;
+    border-bottom: 1px solid royalblue;
+}
+
+ul{
+    display: flex;
+    gap: 25px;
+    padding-right: 25px;
+    justify-content: end;
+    font-size: 1rem;
+    text-transform: capitalize;
+    list-style-type: none;   
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.main{
+    height: 600px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    z-index: 2;
+}
+
+.container{
+    width: 650px;
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
+p{
+    width: 560px;
+    
+    padding-bottom: 25px;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+.importante{
+    color: rebeccapurple;
+}
+
+.link-login{
+    border: 1px solid white;
+    padding: 10px 10px;
+    color: white;
+    width: 100px;
+    background-color: rgba(0, 0, 124, 0.866);
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+
+.cards{
+    display: flex;
+    padding-right: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.card {
+    font-size: 1rem;
+    display: flex;
+    border: 1px solid white;
+    height: 200px;
+    border-radius: 25px;
+    background-color: rgb(11, 15, 67);
+    justify-self: center;
+    align-items: center;
+    
+}
+
+
+.card h1{
+    font-size: 1rem;
+}
+
+
+
+
+
