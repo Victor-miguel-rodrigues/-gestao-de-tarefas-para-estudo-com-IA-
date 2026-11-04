@@ -1,0 +1,1 @@
+!Dado não funcional erro no servidor

@@ -22,7 +22,20 @@ class UsuariosController extends Controller
     public function create(RegisterRequest $request)
     {
         //
-        dd($request);
+        $credenciais = $request->only('nome_completo','email','password','data_nascimento');
+
+        $usuarios =  Usuarios::create([
+            'nome_completo' => $credenciais['nome_completo'],
+            'email' => $credenciais['email'],
+            'password' => bcrypt($credenciais['password']),
+            'data_nascimento' => $credenciais['data_nascimento']
+        ]);
+
+        if($usuarios){
+            return redirect()->back(201)->with('success', 'Usuário cadastrado com sucesso!');
+        }else{
+            return redirect()->back(403)->withErrors('error', 'Usuário não cadastrado!');
+        }
     }
 
     /**

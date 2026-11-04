@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             'nome_completo' => 'required|max:120',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:60',
+            'password' => 'required|min:6|max:60|confirmed',
             'password_confirmation' => 'required|min:6|max:60',
             'data_nascimento' => 'required|date|before_or_equal:'.now()->subYears(13)->format('y-m-d'),
         ];
@@ -42,6 +42,7 @@ class RegisterRequest extends FormRequest
             'password.required' => 'Campo Senha é obrigatório',
             'password.min' => 'A senha deve ter no minimo 6 caracteres',
             'password.max' => 'O campo senha deve ter no maximo 60 caracteres',
+            'password.confirmed' => 'as duas senhas devem ser iguais',
             'password_confirmation' => 'Confirme sua senha',
             'data_nascimento.required' => 'Campo data de nascimento é obrigatório',
             'data_nascimento.date' => 'Informe uma data válida',

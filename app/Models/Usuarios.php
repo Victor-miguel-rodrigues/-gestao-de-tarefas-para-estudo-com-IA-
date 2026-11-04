@@ -12,4 +12,6 @@ class Usuarios extends Authenticatable
     use HasFactory;
 
     protected $table = 'usuarios';
+
+    protected $fillable = ['nome_completo','email','password','data_nascimento'];
 }

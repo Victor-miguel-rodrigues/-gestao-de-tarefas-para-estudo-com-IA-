@@ -30,3 +30,16 @@ button{
     height: 40px;
     border-radius: 15px;
 }
+
+p{
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: rgb(117, 116, 116);
+}

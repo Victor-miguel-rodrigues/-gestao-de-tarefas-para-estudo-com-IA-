@@ -52,9 +52,18 @@
             @error('data_nascimento')
                   <span>{{ $message }}</span>
             @enderror
+            <p>
+                ja possui Conta? <a href="">fazer login</a>
+            </p>
             <button type="submit">Cadastrar usuario</button>
+            
         </form>
     </div>
     
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 </body>
 </html>
