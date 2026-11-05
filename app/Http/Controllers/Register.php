@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Register extends Controller
 {
@@ -12,6 +13,7 @@ class Register extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -37,6 +39,10 @@ class Register extends Controller
     public function show(string $id)
     {
         //
+        if(Auth::id() != $id){
+            abort(403, 'acesso não autorizado');
+        }
+        return view('perfil.perfil');
     }
 
     /**

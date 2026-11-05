@@ -53,7 +53,7 @@
                   <span>{{ $message }}</span>
             @enderror
             <p>
-                ja possui Conta? <a href="">fazer login</a>
+                ja possui Conta? <a href="{{ route('login.auth') }}">fazer login</a>
             </p>
             <button type="submit">Cadastrar usuario</button>
             

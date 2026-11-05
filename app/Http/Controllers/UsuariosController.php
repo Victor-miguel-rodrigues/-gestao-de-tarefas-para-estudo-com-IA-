@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
@@ -14,6 +16,8 @@ class UsuariosController extends Controller
     public function index()
     {
         //
+        
+        return view('pagina_inicial');
     }
 
     /**
@@ -23,11 +27,12 @@ class UsuariosController extends Controller
     {
         //
         $credenciais = $request->only('nome_completo','email','password','data_nascimento');
+        $password_hash = bcrypt($credenciais['password']);
 
         $usuarios =  Usuarios::create([
             'nome_completo' => $credenciais['nome_completo'],
             'email' => $credenciais['email'],
-            'password' => bcrypt($credenciais['password']),
+            'password' => $password_hash,
             'data_nascimento' => $credenciais['data_nascimento']
         ]);
 
@@ -41,9 +46,18 @@ class UsuariosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         //
+        $credenciais = $request->only('email','password');
+
+        if(Auth::attempt($credenciais)){
+            $request->session()->regenerate();
+
+            return redirect()->intended('/home');
+        }else{
+            return redirect()->back()->withErrors('error' , 'credenciais invalidas');
+        }
     }
 
     /**
@@ -52,29 +66,22 @@ class UsuariosController extends Controller
     public function show(Usuarios $usuarios)
     {
         //
+        return view('formLogin');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuarios $usuarios)
+    public function edit(Request $usuarios)
     {
         //
+        Auth::logout();
+
+        // Invalidate session
+        $usuarios->session()->invalidate();
+        $usuarios->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'You have been logged out.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Usuarios $usuarios)
-    {
-        //
-    }
 }
